@@ -1,6 +1,6 @@
 # zlinter - custom rule example
 
-A tiny project with a custom example rule to poke around
+A tiny zig 0.14.1 project with a custom example rule to poke around
 
 ```shell
 zig build lint
