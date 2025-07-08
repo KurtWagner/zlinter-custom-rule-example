@@ -27,15 +27,18 @@ pub fn build(b: *std.Build) !void {
     const lint_cmd = b.step("lint", "Run linter");
     lint_cmd.dependOn(step: {
         var builder = zlinter.builder(b, .{ .target = target, .optimize = optimize });
-        try builder.addPaths(.{.exclude = &.{"src/example_rule.zig"},});
-        try builder.addRule(
-            .{ .custom = .{
-                .name = "example_rule",
-                .path = "src/example_rule.zig",
-            } },
+        builder.addPaths(.{ .exclude = &.{"src/example_rule.zig"} });
+        builder.addRule(
+            .{
+                .custom = .{
+                    .name = "example_rule",
+                    .path = "src/example_rule.zig",
+                },
+            },
+            // Config for custom rule:
             .{ .severity = .@"error" },
         );
-        break :step try builder.build();
+        break :step builder.build();
     });
 }
 
