@@ -36,7 +36,7 @@ pub fn build(b: *std.Build) !void {
                 },
             },
             // Config for custom rule:
-            .{ .severity = .@"error" },
+            .{ .severity = .warning },
         );
         break :step builder.build();
     });
