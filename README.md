@@ -1,6 +1,10 @@
 # zlinter - custom rule example
 
-A tiny zig 0.15.x project with a custom [zlinter](https://github.com/KurtWagner/zlinter) rule to poke around.
+[![Zig 0.14.x](https://img.shields.io/github/actions/workflow/status/KurtWagner/zlinter-custom-rule-example/ci.yml?branch=0.14.x&label=Zig%200.14.x&style=flat)](https://github.com/KurtWagner/zlinter/actions/workflows/ci.yml)
+[![Zig 0.15.x](https://img.shields.io/github/actions/workflow/status/KurtWagner/zlinter-custom-rule-example/ci.yml?branch=0.15.x&label=Zig%200.15.x&style=flat)](https://github.com/KurtWagner/zlinter/actions/workflows/ci.yml)
+[![Zig master](https://img.shields.io/github/actions/workflow/status/KurtWagner/zlinter-custom-rule-example/ci.yml?branch=master&label=Zig%200.16.x&style=flat)](https://github.com/KurtWagner/zlinter/actions/workflows/ci.yml)
+
+A tiny zig 0.14.x project with a custom [zlinter](https://github.com/KurtWagner/zlinter) rule to poke around.
 
 1. Edit rule [`src/example_rule.zig`](src/example_rule.zig)
 
