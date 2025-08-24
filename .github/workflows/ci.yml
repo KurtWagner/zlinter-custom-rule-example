@@ -1,22 +1,20 @@
-name: CI master
-run-name: CI master tests
+name: CI 0.14.1
+run-name: CI 0.14.1 tests
 on:
   push:
     branches:
-      - master
+      - 0.14.1
     paths:
       - '**.zig'
       - '**.zon'
-  schedule:
-    - cron: '0 0 * * 0' # Runs every Sunday at 00:00 UTC
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test master on linux
+    name: Test 0.14.1 on linux
     timeout-minutes: 2
     strategy:
       matrix:
-        zig_version: ["master"]
+        zig_version: ["0.14.1"]
     steps:
       - name: "Checkout repo"
         uses: actions/checkout@v4
