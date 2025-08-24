@@ -4,6 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - 0.14.x
+      - 0.15.x
       - master
     paths:
       - '**.zig'
