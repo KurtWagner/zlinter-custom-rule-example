@@ -4,7 +4,7 @@ const std = @import("std");
 const zlinter = @import("zlinter");
 
 pub const Config = struct {
-    severity: zlinter.rules.LintProblemSeverity = .warning,
+    severity: zlinter.rules.LintProblemSeverity = .@"error",
 };
 
 pub fn buildRule(options: zlinter.rules.RuleOptions) zlinter.rules.LintRule {
