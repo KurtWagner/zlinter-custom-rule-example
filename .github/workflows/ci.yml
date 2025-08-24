@@ -1,6 +1,7 @@
 name: CI master
 run-name: CI master tests
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
