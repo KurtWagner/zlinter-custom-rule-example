@@ -1,5 +1,5 @@
-name: CI 0.14.1
-run-name: CI 0.14.1 tests
+name: CI
+run-name: CI tests
 on:
   workflow_dispatch:
   push:
@@ -11,7 +11,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test 0.14.1 on linux
+    name: Test on linux
     timeout-minutes: 2
     strategy:
       matrix:
