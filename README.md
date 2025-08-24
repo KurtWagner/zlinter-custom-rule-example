@@ -1,6 +1,6 @@
 # zlinter - custom rule example
 
-A tiny zig 0.14.1 project with a custom [zlinter](https://github.com/KurtWagner/zlinter) rule to poke around.
+A tiny zig 0.15.x project with a custom [zlinter](https://github.com/KurtWagner/zlinter) rule to poke around.
 
 1. Edit rule [`src/example_rule.zig`](src/example_rule.zig)
 
