@@ -1,6 +1,7 @@
 name: CI 0.14.1
 run-name: CI 0.14.1 tests
 on:
+  workflow_dispatch:
   push:
     branches:
       - 0.14.1
