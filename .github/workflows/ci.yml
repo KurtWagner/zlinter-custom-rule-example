@@ -1,5 +1,5 @@
-name: CI master
-run-name: CI master tests
+name: CI
+run-name: CI tests
 on:
   workflow_dispatch:
   push:
@@ -13,7 +13,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: Test master on linux
+    name: Test on linux
     timeout-minutes: 2
     strategy:
       matrix:
