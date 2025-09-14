@@ -5,8 +5,8 @@
     .minimum_zig_version = "0.14.1",
     .dependencies = .{
         .zlinter = .{
-            .url = "git+https://github.com/kurtwagner/zlinter?ref=master#81f6e7c0f6343f44e6e5fecfcee2abea2d2cab70",
-            .hash = "zlinter-0.0.1-OjQ08R-nCgBkzElan6z-x9wfB9z7SWkYv5g8gTpr266e",
+            .url = "git+https://github.com/kurtwagner/zlinter?ref=master#680f8d4b7983b6849f54ffec5b448e9aa7236f24",
+            .hash = "zlinter-0.0.1-OjQ08WVCCwAAHXC7lQRZT0Gxr65vtb8-v-K_y0m6qZU2",
         },
         .zls = .{
             .url = "git+https://github.com/zigtools/zls?ref=master#1840a4b81be10e900b1ab0343178638452dc28aa",
