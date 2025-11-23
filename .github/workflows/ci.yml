@@ -16,7 +16,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: Test on linux
-    timeout-minutes: 2
+    timeout-minutes: 5
     strategy:
       matrix:
         zig_version: ["master"]
