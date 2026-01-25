@@ -22,7 +22,7 @@ fn run(
     doc: *const zlinter.session.LintDocument,
     allocator: std.mem.Allocator,
     options: zlinter.rules.RunOptions,
-) error{OutOfMemory}!?zlinter.results.LintResult {
+) zlinter.rules.RunError!?zlinter.results.LintResult {
     const config = options.getConfig(Config);
 
     var lint_problems = std.ArrayListUnmanaged(zlinter.results.LintProblem).empty;
