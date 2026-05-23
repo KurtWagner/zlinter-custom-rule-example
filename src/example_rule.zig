@@ -33,7 +33,7 @@ fn run(
     while (token < tree.tokens.len) : (token += 1) {
         if (tree.tokens.items(.tag)[token] == .string_literal) {
             const name = tree.tokenSlice(token);
-            if (std.ascii.indexOfIgnoreCase(name, "Hello") != null) {
+            if (std.ascii.findIgnoreCase(name, "Hello") != null) {
                 try lint_problems.append(allocator, .{
                     .rule_id = rule.rule_id,
                     .severity = config.severity,
