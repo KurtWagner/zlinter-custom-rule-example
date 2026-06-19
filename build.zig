@@ -17,9 +17,6 @@ pub fn build(b: *std.Build) !void {
     });
     const run_step = b.step("run", "Run main");
     const run_exe = b.addRunArtifact(exe);
-    if (b.args) |args| {
-        run_exe.addArgs(args);
-    }
     run_step.dependOn(&run_exe.step);
 
     // zig build lint
@@ -27,7 +24,7 @@ pub fn build(b: *std.Build) !void {
     const lint_cmd = b.step("lint", "Run linter");
     lint_cmd.dependOn(step: {
         var builder = zlinter.builder(b, .{ .target = target });
-        builder.addPaths(.{ .exclude = &.{b.path("src/example_rule.zig")} });
+        builder.addPaths(.{ .exclude_files = &.{b.path("src/example_rule.zig")} });
         builder.addRule(
             .{
                 .custom = .{

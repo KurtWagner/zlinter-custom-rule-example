@@ -13,12 +13,13 @@ pub fn buildRule(options: zlinter.rules.RuleOptions) zlinter.rules.LintRule {
     return zlinter.rules.LintRule{
         .rule_id = "example_rule",
         .run = &run,
+        .execution = .syntax_only,
     };
 }
 
 fn run(
     rule: zlinter.rules.LintRule,
-    _: *zlinter.session.LintContext,
+    context: *zlinter.session.LintContext,
     doc: *const zlinter.session.LintDocument,
     allocator: std.mem.Allocator,
     options: zlinter.rules.RunOptions,
@@ -28,7 +29,7 @@ fn run(
     var lint_problems = std.ArrayListUnmanaged(zlinter.results.LintProblem).empty;
     defer lint_problems.deinit(allocator);
 
-    const tree = doc.handle.tree;
+    const tree = doc.tree(context);
     var token: std.zig.Ast.TokenIndex = 0;
     while (token < tree.tokens.len) : (token += 1) {
         if (tree.tokens.items(.tag)[token] == .string_literal) {
@@ -48,7 +49,7 @@ fn run(
     return if (lint_problems.items.len > 0)
         try zlinter.results.LintResult.init(
             allocator,
-            doc.path,
+            doc.absPath(context),
             try lint_problems.toOwnedSlice(allocator),
         )
     else
