@@ -13,34 +13,33 @@ pub fn buildRule(options: zlinter.rules.RuleOptions) zlinter.rules.LintRule {
     return zlinter.rules.LintRule{
         .rule_id = "example_rule",
         .run = &run,
-        .execution = .syntax_only,
     };
 }
 
 fn run(
     rule: zlinter.rules.LintRule,
-    context: *zlinter.session.LintContext,
+    session: *zlinter.session.LintSession,
     doc: *const zlinter.session.LintDocument,
-    allocator: std.mem.Allocator,
     options: zlinter.rules.RunOptions,
 ) zlinter.rules.RunError!?zlinter.results.LintResult {
     const config = options.getConfig(Config);
 
-    var lint_problems = std.ArrayListUnmanaged(zlinter.results.LintProblem).empty;
-    defer lint_problems.deinit(allocator);
+    const session_arena = session.runtime.sessionArena();
 
-    const tree = doc.tree(context);
+    var lint_problems = std.ArrayListUnmanaged(zlinter.results.LintProblem).empty;
+
+    const tree = doc.tree(session);
     var token: std.zig.Ast.TokenIndex = 0;
     while (token < tree.tokens.len) : (token += 1) {
         if (tree.tokens.items(.tag)[token] == .string_literal) {
             const name = tree.tokenSlice(token);
             if (std.ascii.findIgnoreCase(name, "Hello") != null) {
-                try lint_problems.append(allocator, .{
+                try lint_problems.append(session_arena, .{
                     .rule_id = rule.rule_id,
                     .severity = config.severity,
                     .start = .startOfToken(tree, token),
                     .end = .endOfToken(tree, token),
-                    .message = try allocator.dupe(u8, "No hello!"),
+                    .message = try session_arena.dupe(u8, "No hello!"),
                 });
             }
         }
@@ -48,9 +47,9 @@ fn run(
 
     return if (lint_problems.items.len > 0)
         try zlinter.results.LintResult.init(
-            allocator,
-            doc.absPath(context),
-            try lint_problems.toOwnedSlice(allocator),
+            session_arena,
+            doc.absPath(session),
+            try lint_problems.toOwnedSlice(session_arena),
         )
     else
         null;
