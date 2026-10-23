@@ -26,7 +26,7 @@ fn run(
 
     const session_arena = session.runtime.sessionArena();
 
-    var lint_problems = std.ArrayListUnmanaged(zlinter.results.LintProblem).empty;
+    var lint_problems = std.ArrayList(zlinter.results.LintProblem).empty;
 
     const tree = doc.tree(session);
     var token: std.zig.Ast.TokenIndex = 0;
